@@ -14,7 +14,7 @@
                 const elJ = mat2[j];
                 console.log(eli, elJ);
 
-                output.push(eli[i] + elJ[j])
+                output.push(eli[i] + elJ[j]) 
                 output.push(eli[0] + elJ[1])
                 break
             }
