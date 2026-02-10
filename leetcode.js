@@ -187,3 +187,62 @@
   };
   reverse(123456789);
 }
+
+{
+  // isPalindrome
+  console.log(isPalindrome(-121));
+  function isPalindrome(num) {
+    sum = 0;
+    num1 = num;
+    while (num > 0) {
+      sum = sum * 10;
+      let temp = num % 10;
+      sum = sum + temp;
+      num = Math.floor(num / 10);
+    }
+    console.log(sum);
+
+    return sum == num1;
+  }
+}
+
+{
+  //
+  console.log(isMatch("aa", "a"));
+  function isMatch(s = String, p = String) {
+    const m = s.length;
+    const n = p.length;
+
+    // dp[i][j] = whether s[0..i-1] matches p[0..j-1]
+    const dp = Array.from({ length: m + 1 }, () =>
+      new Array(n + 1).fill(false)
+    );
+    console.log(dp);
+
+    dp[0][0] = true; // empty string matches empty pattern
+
+    // handle patterns like a*, a*b*, a*b*c* at the start
+    for (let j = 2; j <= n; j++) {
+      if (p[j - 1] === "*") {
+        dp[0][j] = dp[0][j - 2];
+      }
+    }
+
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        if (p[j - 1] === "." || p[j - 1] === s[i - 1]) {
+          dp[i][j] = dp[i - 1][j - 1];
+        } else if (p[j - 1] === "*") {
+          // case 1: '*' means zero occurrences
+          dp[i][j] = dp[i][j - 2];
+          // case 2: '*' means one or more of preceding char
+          if (p[j - 2] === "." || p[j - 2] === s[i - 1]) {
+            dp[i][j] = dp[i][j] || dp[i - 1][j];
+          }
+        }
+      }
+    }
+
+    return dp[m][n];
+  }
+}
