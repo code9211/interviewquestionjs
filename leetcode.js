@@ -11,7 +11,7 @@
     }
   };
 
-  (nums = [3, 2, 4]), (target = 6);
+  ((nums = [3, 2, 4]), (target = 6));
 
   console.log(twoSum(nums, target));
 }
@@ -215,7 +215,7 @@
 
     // dp[i][j] = whether s[0..i-1] matches p[0..j-1]
     const dp = Array.from({ length: m + 1 }, () =>
-      new Array(n + 1).fill(false)
+      new Array(n + 1).fill(false),
     );
     console.log(dp);
 
@@ -244,5 +244,53 @@
     }
 
     return dp[m][n];
+  }
+}
+{
+  input = [6, 3, 7, 13, 4, 8, 21];
+  output = [7, 4, 8, 21, 6, 13, -1];
+  let result = [];
+  swift(input);
+  console.log(result);
+
+  function swift(arr1) {
+    for (let index = 0; index < arr1.length; index++) {
+      const element = arr1[index];
+      let greatest = Infinity;
+      for (let j = 0; j < arr1.length; j++) {
+        const innerj = arr1[j];
+        if (innerj > element && innerj < greatest) {
+          greatest = innerj;
+        }
+      }
+      result.push(greatest == Infinity ? -1 : greatest);
+    }
+  }
+}
+
+{
+  groupBy(
+    [
+      { name: "John", age: 50 },
+      { name: "Jane", age: 30 },
+      { name: "Jane", age: 32 },
+    ],
+    "name",
+  );
+  function groupBy(input, grp) {
+    let result = {};
+
+    for (let index = 0; index < input.length; index++) {
+      const element = input[index];
+      console.log(element[grp], grp);
+
+      if (result[element[grp]]) {
+        result[element[grp]].push(element);
+      } else {
+        result[element[grp]] = [element];
+      }
+    }
+
+    return result;
   }
 }

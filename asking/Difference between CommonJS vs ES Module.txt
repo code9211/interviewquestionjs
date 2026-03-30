@@ -1,0 +1,100 @@
+Difference between CommonJS vs ES Modules?
+
+The difference between CommonJS (CJS) and ES Modules (ESM) is mainly about how JavaScript modules are defined, loaded, and used—especially in environments like Node.js and modern browsers.
+
+🔹 1. Syntax
+CommonJS (CJS)
+// export
+module.exports = { add };
+
+// import
+const { add } = require('./math');
+ES Modules (ESM)
+// export
+export const add = () => {};
+
+// import
+import { add } from './math.js';
+🔹 2. Loading Behavior
+CommonJS
+
+Synchronous (loads modules at runtime)
+
+Good for server-side (like Node.js)
+
+ES Modules
+
+Asynchronous (supports static analysis)
+
+Better for browsers & modern tooling
+
+🔹 3. Default vs Named Exports
+CommonJS
+Only one module.exports
+
+module.exports = function() {};
+ES Modules
+Supports both:
+
+export default function() {}
+export const name = "Sumit";
+🔹 4. Top-Level Scope
+CommonJS
+
+Wrapped inside a function
+
+Variables are module-scoped
+
+ES Modules
+
+Strict mode by default
+
+Top-level this is undefined
+
+🔹 5. File Extensions / Config
+CommonJS
+Default in older Node.js
+
+Uses .js
+
+ES Modules
+Requires:
+
+"type": "module" in package.json OR
+
+.mjs extension
+
+🔹 6. Dynamic Imports
+CommonJS
+const module = require('./file');
+ES Modules
+const module = await import('./file.js');
+🔹 7. Tree Shaking (Optimization)
+CommonJS
+❌ Not easily optimized
+
+ES Modules
+✅ Supports tree-shaking (used by bundlers like Webpack)
+
+🔹 8. Use Case Summary
+Feature	CommonJS	ES Modules
+Syntax	require/module	import/export
+Loading	Sync	Async
+Browser Support	❌	✅
+Tree Shaking	❌	✅
+Modern Standard	❌	✅
+🔹 When to Use What?
+Use CommonJS:
+
+Legacy projects
+
+Older Node.js apps
+
+Use ES Modules:
+
+Modern apps
+
+Frontend + Backend (Node 14+)
+
+When using bundlers or frameworks
+

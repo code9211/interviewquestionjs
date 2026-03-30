@@ -1,0 +1,112 @@
+An API Gateway is a single entry point for all client requests in a system—especially in a microservices architecture.
+
+Instead of clients calling multiple services directly, they send requests to the gateway, which then routes, processes, and manages those requests.
+
+🚪 Simple Analogy
+Think of it like a hotel receptionist:
+
+You (client) don’t go to each department
+
+You talk to the receptionist (API Gateway)
+
+They forward your request to the right place
+
+🔹 Where It Fits
+Client → API Gateway → Microservices → Database
+
+Common tools:
+
+NGINX
+
+Kong
+
+AWS API Gateway
+
+🔹 Key Responsibilities
+1. Request Routing
+Sends request to correct service
+
+Example:
+
+/users → User Service  
+/orders → Order Service
+2. Authentication & Authorization
+Validates JWT/token before request reaches services
+
+3. Rate Limiting
+Prevents abuse
+
+👉 Example:
+
+Max 100 requests/min per user
+
+4. Load Balancing
+Distributes traffic across multiple servers
+
+5. Response Aggregation
+Combines data from multiple services
+
+Example:
+
+/dashboard → user + orders + analytics
+
+6. Logging & Monitoring
+Tracks all requests centrally
+
+🔹 Example Flow
+Client calls:
+
+GET /dashboard
+API Gateway:
+
+Auth check ✅
+
+Calls multiple services:
+
+User Service
+
+Order Service
+
+Combines response
+
+Sends final result
+
+🔹 Why Use API Gateway?
+Without it ❌:
+
+Client must call multiple services
+
+More complexity
+
+Security issues
+
+With it ✅:
+
+Centralized control
+
+Better security
+
+Easier scaling
+
+🔥 Interview One-Liner
+“An API Gateway is a centralized entry point that handles request routing, authentication, rate limiting, and aggregation in a microservices architecture.”
+
+🚀 When to Use
+Use API Gateway when:
+
+You have multiple microservices
+
+Need centralized security
+
+Want clean client-side architecture
+
+⚠️ Drawbacks
+Single point of failure (if not designed well)
+
+Can become a bottleneck
+
+👉 Solution:
+
+Deploy multiple gateway instances
+
+Use load balancing

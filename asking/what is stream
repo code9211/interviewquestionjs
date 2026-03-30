@@ -1,0 +1,85 @@
+What are streams in Node.js?
+In Node.js, streams are a way to handle data piece by piece (chunks) instead of loading everything into memory at once.
+
+Think of it like watching a video on YouTube — you don’t download the full video first; it loads continuously. That’s exactly how streams work.
+
+🔹 Why Streams?
+Without streams:
+
+File is loaded completely into memory ❌
+
+Slow + memory heavy ❌
+
+With streams:
+
+Data is processed in chunks ✅
+
+Faster + memory efficient ✅
+
+🔹 Types of Streams in Node.js
+
+1. Readable Stream (Read data)
+   Used to read data from a source
+
+const fs = require('fs');
+
+const readable = fs.createReadStream('file.txt');
+
+readable.on('data', chunk => {
+console.log(chunk.toString());
+}); 2. Writable Stream (Write data)
+Used to write data to a destination
+
+const fs = require('fs');
+
+const writable = fs.createWriteStream('output.txt');
+
+writable.write('Hello World');
+writable.end(); 3. Duplex Stream (Read + Write)
+Can do both simultaneously
+
+Example:
+
+TCP sockets
+
+4. Transform Stream (Modify data)
+   A special duplex stream that transforms data
+
+Example:
+
+Compression, encryption
+
+const zlib = require('zlib');
+
+const gzip = zlib.createGzip();
+🔹 Pipe Method (Most Important 🚀)
+Streams can be connected using .pipe()
+
+const fs = require('fs');
+
+fs.createReadStream('input.txt')
+.pipe(fs.createWriteStream('output.txt'));
+👉 This reads and writes chunk by chunk automatically
+
+🔹 Real-Life Examples
+File upload/download
+
+Video streaming (like Netflix/Hotstar)
+
+API data handling
+
+Large log processing
+
+🔹 Key Advantages
+Memory efficient
+
+Faster processing
+
+Handles large data easily
+
+Supports backpressure (prevents overload)
+
+🔥 Interview One-Liner
+“Streams in Node.js allow processing data in chunks instead of loading the entire dataset into memory, making applications more efficient and scalable.”
+
+If you want, I can also explain backpressure (very important interview topic) or give a real API example for video streaming 👍
