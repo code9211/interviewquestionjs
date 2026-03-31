@@ -75,3 +75,26 @@ It tells Angular where to provide (register) the service.
 When you want separate instances per lazy module
 
 }
+
+{Bootstrapping is the process where Angular initializes the application by loading the root module or standalone component and rendering it into the DOM.}
+{ 2. Standalone Bootstrapping (Modern ⭐)
+import { bootstrapApplication } from '@angular/platform-browser';
+
+bootstrapApplication(AppComponent);
+}
+
+{platformBrowserDynamic().bootstrapModule(AppModule)
+.catch(err => console.error(err));}
+
+multicasting
+
+{Method 2: Using share() (Most Used ⭐)
+import { share } from 'rxjs/operators';
+
+const obs$ = new Observable(sub => {
+console.log("API called once");
+sub.next(Math.random());
+}).pipe(share());
+
+obs$.subscribe(x => console.log("A:", x));
+obs$.subscribe(x => console.log("B:", x));}
